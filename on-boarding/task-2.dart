@@ -5,7 +5,7 @@ class Task {
   String description;
   DateTime dueDate;
   bool isCompleted;
-
+  // nothing to add
   Task(this.title, this.description, this.dueDate, this.isCompleted);
 
   @override
@@ -37,7 +37,8 @@ class TaskManager {
   }
 
   void viewCompletedTasks() {
-    List<Task> completedTasks = tasks.where((task) => task.isCompleted).toList();
+    List<Task> completedTasks =
+        tasks.where((task) => task.isCompleted).toList();
     if (completedTasks.isEmpty) {
       print('No completed tasks found.');
     } else {
@@ -58,7 +59,11 @@ class TaskManager {
     }
   }
 
-  void editTask(int taskIndex, {String? title, String? description, DateTime? dueDate, bool? isCompleted}) {
+  void editTask(int taskIndex,
+      {String? title,
+      String? description,
+      DateTime? dueDate,
+      bool? isCompleted}) {
     if (taskIndex < 0 || taskIndex >= tasks.length) {
       print('Invalid task index.');
     } else {
@@ -82,8 +87,9 @@ class TaskManager {
 }
 
 void main() {
+  // This code in feature-branch to differenciate with original code
   final taskManager = TaskManager();
-
+  // some comment here too
   while (true) {
     print('\nOptions:');
     print('1. Add a new task');
@@ -122,11 +128,14 @@ void main() {
         stdout.write('Enter the task index to edit: ');
         var taskIndex = int.parse(stdin.readLineSync()!);
         taskIndex -= 1;
-        stdout.write('Enter new task title (press enter to keep the current title): ');
+        stdout.write(
+            'Enter new task title (press enter to keep the current title): ');
         var newTitle = stdin.readLineSync()!;
-        stdout.write('Enter new task description (press enter to keep the current description): ');
+        stdout.write(
+            'Enter new task description (press enter to keep the current description): ');
         var newDescription = stdin.readLineSync()!;
-        stdout.write('Enter new due date (yyyy-mm-dd) (press enter to keep the current due date): ');
+        stdout.write(
+            'Enter new due date (yyyy-mm-dd) (press enter to keep the current due date): ');
         var newDueDateStr = stdin.readLineSync()!;
         DateTime? newDueDate;
         if (newDueDateStr.isNotEmpty) {
@@ -135,7 +144,11 @@ void main() {
         stdout.write('Is the task completed? (y/n): ');
         var isCompletedStr = stdin.readLineSync()!;
         var isCompleted = isCompletedStr.toLowerCase().startsWith('y');
-        taskManager.editTask(taskIndex, title: newTitle, description: newDescription, dueDate: newDueDate, isCompleted: isCompleted);
+        taskManager.editTask(taskIndex,
+            title: newTitle,
+            description: newDescription,
+            dueDate: newDueDate,
+            isCompleted: isCompleted);
         break;
       case 6:
         stdout.write('Enter the task index to delete: ');
