@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             IconButton(
                 onPressed: _decrementCounter,
-                icon: Icon(Icons.arrow_circle_down,size: 40,)
+                icon: Icon(Icons.arrow_circle_down,size: 50,color: Colors.grey,)
             ),
             SizedBox(width: 15,),
 
@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(width: 15,),
             IconButton(
                 onPressed: _incrementCounter,
-                icon: Icon(Icons.arrow_circle_up,size: 40,)
+                icon: Icon(Icons.arrow_circle_up,size: 50,color: Colors.grey,)
             ),
           ],
         ),
