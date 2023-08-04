@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:to_do_app/screen/TaskDetail.dart';
+import 'package:to_do_app/screen/createTask.dart';
 
 class Home extends StatefulWidget {
+
   const Home({Key? key}) : super(key: key);
 
   @override
@@ -9,6 +12,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<Map<String, String>> tasks = [];
+
+  void addTask(Map<String, String> newTask) {
+    setState(() {
+      tasks.add(newTask);
+    });
+  }
+
+  void deleteTask(int index) {
+    setState(() {
+      tasks.removeAt(index);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,101 +66,57 @@ class _HomeState extends State<Home> {
           ),
           Expanded(
             flex: 2,
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: [
-                  Card(
-                    color: Colors.red,
-                    child: ListTile(
-                      onTap: (){
-                        Navigator.of(context).pushNamed('/detail');
+            child: ListView.builder(
+              itemCount: tasks.length,
+              itemBuilder: (context, index) {
+                final task = tasks[index];
+                return Card(
+                  // color: Colors.blue,
+                  child: ListTile(
+                    onTap: (){
+                      _onTaskTapped(task, index);
+                    },
+                    leading: Icon(Icons.task, color: Colors.blue),
+                    title: Text(task['taskName'] ?? ''),
+                    subtitle: Text(task['dueDate'] ?? ''),
+                    // trailing: Text(task['dueDate'] ?? '', style: TextStyle(color: Colors.white)),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete, color: HexColor('#EE6F57')),
+                      onPressed: () {
+                        deleteTask(index);
                       },
-                      leading: Icon(Icons.task,color: Colors.white,),
-                      title: Text('UI/UX App',style: TextStyle(color: Colors.white),),
-                      subtitle: Text('Design',style: TextStyle(color: Colors.white),),
-                      trailing: Text('April 20 , 2023',style: TextStyle(color: Colors.white)),
                     ),
                   ),
-                  Card(
-                    color: Colors.green,
-                    child: ListTile(
-                      leading: Icon(Icons.task,color: Colors.white,),
-                      title: Text('UI/UX App',style: TextStyle(color: Colors.white)),
-                      subtitle: Text('Design',style: TextStyle(color: Colors.white)),
-                      trailing: Text('April 20 , 2023',style: TextStyle(color: Colors.white)),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.blue,
-                    child: ListTile(
-                      leading: Icon(Icons.task,color: Colors.white,),
-                      title: Text('View Candidates',style: TextStyle(color: Colors.white)),
-                      trailing: Text('April 20 , 2023',style: TextStyle(color: Colors.white)),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.green,
-                    child: ListTile(
-                      leading: Icon(Icons.task,color: Colors.white,),
-                      title: Text('Football',style: TextStyle(color: Colors.white)),
-                      subtitle: Text('Dribling',style: TextStyle(color: Colors.white)),
-                      trailing: Text('April 20 , 2023',style: TextStyle(color: Colors.white)),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.blue,
-                    child: ListTile(
-                      leading: Icon(Icons.task,color: Colors.white,),
-                      title: Text('Flutter app',style: TextStyle(color: Colors.white)),
-                      subtitle: Text('Design',style: TextStyle(color: Colors.white)),
-                      trailing: Text('April 20 , 2023',style: TextStyle(color: Colors.white)),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.red,
-                    child: ListTile(
-                      leading: Icon(Icons.task,color: Colors.white,),
-                      title: Text('UI/UX App',style: TextStyle(color: Colors.white),),
-                      subtitle: Text('Design',style: TextStyle(color: Colors.white),),
-                      trailing: Text('April 20 , 2023',style: TextStyle(color: Colors.white)),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.green,
-                    child: ListTile(
-                      leading: Icon(Icons.task,color: Colors.white,),
-                      title: Text('UI/UX App',style: TextStyle(color: Colors.white)),
-                      subtitle: Text('Design',style: TextStyle(color: Colors.white)),
-                      trailing: Text('April 20 , 2023',style: TextStyle(color: Colors.white)),
-                    ),
-                  ),
-                  Card(
-                    color: Colors.blue,
-                    child: ListTile(
-                      leading: Icon(Icons.task,color: Colors.white,),
-                      title: Text('View Candidates',style: TextStyle(color: Colors.white)),
-                      trailing: Text('April 20 , 2023',style: TextStyle(color: Colors.white)),
-                    ),
-                  ),
-                ],
-              )
+                );
+              },
+            ),
           ),
           SizedBox(height: 10,),
-          Container(
-            width: 256,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: HexColor('#EE6F57'),),
-            child: Center(
-                child: Text(
-                    "Create task",
-                    style: TextStyle(
-                      fontSize: 19,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    )
-                )
+
+          InkWell(
+            onTap: (){
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => CreateTask(addTask: addTask),
+                ),
+              );
+            },
+            child: Container(
+              width: 256,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: HexColor('#EE6F57'),),
+              child: Center(
+                  child: Text(
+                      "Create task",
+                      style: TextStyle(
+                        fontSize: 19,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      )
+                  )
+              ),
             ),
           ),
           SizedBox(height: 20,)
@@ -152,4 +124,23 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+  void _onTaskTapped(Map<String, String> task, int index) async {
+    Map<String, String>? updatedTask = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TaskDetail(task: task),
+      ),
+    );
+
+    if (updatedTask != null) {
+      _updateTask(updatedTask, index);
+    }
+  }
+
+  void _updateTask(Map<String, String> updatedTask, int index) {
+    setState(() {
+      tasks[index] = updatedTask;
+    });
+  }
+
 }

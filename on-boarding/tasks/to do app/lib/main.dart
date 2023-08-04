@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/home': (context) => Home(),
-        '/create': (context) => CreateTask(),
-        '/detail': (context) => TaskDetail(),
+        // '/create': (context) => CreateTask(),
+        // '/detail': (context) => TaskDetail(),
       },
       home: Starter(),
     );
