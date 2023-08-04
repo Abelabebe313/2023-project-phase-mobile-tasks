@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/screen/TaskDetail.dart';
 import 'package:to_do_app/screen/createTask.dart';
 import 'package:to_do_app/screen/home.dart';
 import 'package:to_do_app/screen/starter.dart';
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/home': (context) => Home(),
-        '/create': (context) => CreateTask()
+        '/create': (context) => CreateTask(),
+        '/detail': (context) => TaskDetail(),
       },
       home: Starter(),
     );

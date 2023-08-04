@@ -56,6 +56,9 @@ class _HomeState extends State<Home> {
                   Card(
                     color: Colors.red,
                     child: ListTile(
+                      onTap: (){
+                        Navigator.of(context).pushNamed('/detail');
+                      },
                       leading: Icon(Icons.task,color: Colors.white,),
                       title: Text('UI/UX App',style: TextStyle(color: Colors.white),),
                       subtitle: Text('Design',style: TextStyle(color: Colors.white),),
