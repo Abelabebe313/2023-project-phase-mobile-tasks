@@ -14,7 +14,7 @@ class _CreateTaskState extends State<CreateTask> {
   final TextEditingController task_name_controller = TextEditingController();
   final TextEditingController task_description_controller = TextEditingController();
   final TextEditingController task_date_controller = TextEditingController();
-  // List<Map<String, String>> tasks = [];
+
   DateTime? selectedDate;
   @override
   void dispose() {
@@ -215,28 +215,23 @@ class _CreateTaskState extends State<CreateTask> {
     }
   }
 
-  // void _navigateToNewPage() {
-  //   // Get the input data from the controllers
-  //   String taskName = task_name_controller.text;
-  //   String dueDate = '${selectedDate?.day}-${selectedDate?.month}-${selectedDate?.year}';
-  //   String description = task_description_controller.text;
-  //
-  //   // Navigate to another page with the data
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => Home(
-  //         taskName: taskName,
-  //         dueDate: dueDate,
-  //         description: description,
-  //       ),
-  //     ),
-  //   );
-  // }
   void _addTask() {
-    String taskName = task_name_controller.text;
-    String dueDate = '${selectedDate?.day}-${selectedDate?.month}-${selectedDate?.year}';
+    String taskName = task_name_controller.text.trim();
+    String dueDate = selectedDate != null
+        ? '${selectedDate?.day}-${selectedDate?.month}-${selectedDate?.year}'
+        : '';
     String description = task_description_controller.text;
+
+    if (taskName.isEmpty) {
+      // Show a SnackBar indicating that the task name is required
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Task name cannot be empty.'),
+          duration: Duration(seconds: 2), // Adjust the duration as needed
+        ),
+      );
+      return;
+    }
 
     Map<String, String> newTask = {
       'taskName': taskName,
@@ -244,10 +239,9 @@ class _CreateTaskState extends State<CreateTask> {
       'description': description,
     };
     widget.addTask(newTask);
-    // setState(() {
-    //   tasks.add(newTask);
-    // });
   }
+
+
 
 }
 

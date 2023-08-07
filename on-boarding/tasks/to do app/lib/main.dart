@@ -8,6 +8,7 @@ void main() {
   runApp(const MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
-        '/home': (context) => Home(),
+        // '/home': (context) => Home(),
         // '/create': (context) => CreateTask(),
         // '/detail': (context) => TaskDetail(),
       },

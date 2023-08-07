@@ -95,7 +95,7 @@ class _TaskDetailState extends State<TaskDetail> {
                   color: Colors.grey[200],
                 ),
                 child: TextField(
-                  controller: taskDateController,
+                  controller: taskDescriptionController,
                   readOnly: true,
                   onTap: () {
                     _selectDate(context);

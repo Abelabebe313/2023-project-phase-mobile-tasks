@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:to_do_app/screen/home.dart';
 
 class Starter extends StatefulWidget {
   const Starter({Key? key}) : super(key: key);
@@ -24,7 +25,11 @@ class _StarterState extends State<Starter> {
             SizedBox(height: 160,),
             InkWell(
               onTap: (){
-                Navigator.of(context).pushNamed('/home');
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context){
+                      return Home();
+                    }
+                ));
               },
               child: Container(
                   width: 256,
