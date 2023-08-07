@@ -18,3 +18,5 @@ samples, guidance on mobile development, and a full API reference.
 ![Taskdetail](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/91ab941b-39cf-4f3b-83df-379ce925b829)
 ![Screenshot (191)](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/8abb4a7d-5c0e-4c16-b7da-e90763eee8f8)
 ![create task](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/cf7b4e19-e6c6-4110-802b-fae37069cc98)
+
+![test widget](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/bfa1feb3-f4af-4ffb-a846-fc97b9cf1fd6)
