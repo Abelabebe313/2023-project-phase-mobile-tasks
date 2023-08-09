@@ -35,19 +35,34 @@ samples, guidance on mobile development, and a full API reference.
                     },
                   ),
   
-   void _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-    );
-
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-      });
-    }
-  }
+          void _selectDate(BuildContext context) async {
+            final DateTime? picked = await showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(2000),
+              lastDate: DateTime(2101),
+            );
+        
+            if (picked != null && picked != selectedDate) {
+              setState(() {
+                selectedDate = picked;
+              });
+            }
+          }
 - Mark Task as Completed Feature:
+  ![Screenshot (198)](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/894709b5-b36f-4f42-b482-9c9cbf698364)
+
+                  Checkbox(
+                      value: task['isCompleted'],
+                      onChanged: (bool? value) {
+                        setState(() {
+                          task['isCompleted'] = value ?? false;
+                        });
+                      },
+                    ),
+  
 - Clean Architecture:
+  ![Screenshot (199)](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/6d98a72f-ab17-49db-b399-861b293e06dd)
+  
+- Error Handling and Either Type:
+  
