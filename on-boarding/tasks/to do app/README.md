@@ -20,3 +20,34 @@ samples, guidance on mobile development, and a full API reference.
 ![create task](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/cf7b4e19-e6c6-4110-802b-fae37069cc98)
 
 ![test widget](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/bfa1feb3-f4af-4ffb-a846-fc97b9cf1fd6)
+
+# Day 7: Task 1
+- Set Due Date Feature
+  ![Screenshot (197)](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/da10e965-b00a-43e5-9130-15ddca82f48c)
+
+                    IconButton(
+                    icon: Icon(
+                      Icons.calendar_today,
+                      color: HexColor('#EE6F57'),
+                    ),
+                    onPressed: () {
+                      _selectDate(context);
+                    },
+                  ),
+  
+   void _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+- Mark Task as Completed Feature:
+- Clean Architecture:
