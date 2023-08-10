@@ -115,5 +115,88 @@ samples, guidance on mobile development, and a full API reference.
             }
           }
         }
+# Day 7: Task 2
+  - Entities
+        
+          class Task extends Equatable {
+            final String id;
+            final String name;
+            final DateTime dueDate;
+            final String description;
+            final bool isCompleted;
+            
+          const Task({
+            required this.id,
+            required this.name,
+            required this.dueDate,
+            required this.description,
+            this.isCompleted = false,
+          });
+        
+          factory Task.completed({
+            required String id,
+            required String name,
+            required DateTime dueDate,
+            required String description,
+          }) {
+            return Task(
+              id: id,
+              name: name,
+              dueDate: dueDate,
+              description: description,
+              isCompleted: true,
+            );
+          }
+        
+          @override
+          List<Object?> get props =>
+              [id, name, dueDate, description, isCompleted];
+        }
+
+  - View All UseCases
+      to_do_app\lib\features\TODO app\domain\usecases\view_all_task.dart
+    
+        class ViewAllTasks implements UseCase<List<MyTask>, NoParams> {
+          final TaskRepository repository;
+          
+          ViewAllTasks(this.repository);
+        
+          @override
+          Future<Either<Failure, List<MyTask>>> call(NoParams params) async {
+            return await repository.getTasks();
+          }
+        }
+        
+        class NoParams extends Equatable {
+          @override
+          List<Object> get props => [];
+        }
+  - View specific Task use case
+        to_do_app\lib\features\TODO app\domain\usecases\view_one_task.dart
+
+        class ViewOneTask implements UseCase<MyTask, String> {
+          final TaskRepository repository;
+        
+          ViewOneTask(this.repository);
+        
+          @override
+          Future<Either<Failure, MyTask>> call(String taskId) async {
+            return await repository.getOneTask(taskId);
+          }
+        }
+  - Create new Task use case
+       to_do_app\lib\features\TODO app\domain\usecases\create_task.dart
+    
+        class CreateTask implements UseCase<void, MyTask> {
+          final TaskRepository repository;
+        
+          CreateTask(this.repository);
+        
+          @override
+          Future<Either<Failure, void>> call(MyTask task) async {
+            return await repository.addTask(task);
+          }
+        }
+
 
   
