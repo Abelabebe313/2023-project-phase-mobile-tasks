@@ -1,4 +1,4 @@
-# to_do_app
+# TO DO APP
 
 A new Flutter project.
 
@@ -21,7 +21,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ![test widget](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/bfa1feb3-f4af-4ffb-a846-fc97b9cf1fd6)
 
-# Day 7: Task 1
+## Day 7: Task 1
 - Set Due Date Feature
   ![Screenshot (197)](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/da10e965-b00a-43e5-9130-15ddca82f48c)
 
@@ -115,7 +115,7 @@ samples, guidance on mobile development, and a full API reference.
             }
           }
         }
-# Day 7: Task 2
+## Day 7: Task 2
   - Entities
         
           class Task extends Equatable {
