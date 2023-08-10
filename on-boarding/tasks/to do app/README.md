@@ -21,6 +21,59 @@ samples, guidance on mobile development, and a full API reference.
 
 ![test widget](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/bfa1feb3-f4af-4ffb-a846-fc97b9cf1fd6)
 
+## Day 8: Task 1
+- Task 1: Project Setup
+
+   ![Screenshot (200)](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/abee7a77-5f9e-4d18-9aa5-506c09cc95c8)
+
+  
+- Task 2: Implement Models
+  Define Task model
+  
+      class TaskModel extends MyTask {
+      const TaskModel({
+        required String id,
+        required String name,
+        required DateTime dueDate,
+        required String description,
+        bool isCompleted = false,
+      }) : super(
+        id: id,
+        name: name,
+        dueDate: dueDate,
+        description: description,
+        isCompleted: completed,
+      );
+
+  From JSON
+  
+      factory TaskModel.fromJson(Map<String, dynamic> json) {
+        return TaskModel(
+          id: json['id'],
+          name: json['name'],
+          dueDate: DateTime.parse(json['dueDate']),
+          description: json['description'],
+          isCompleted: json['isCompleted'],
+        );
+      }
+
+To JSON
+
+      Map<String, dynamic> toJson() {
+        return {
+          'id': id,
+          'name': name,
+          'dueDate': dueDate.toIso8601String(),
+          'description': description,
+          'isCompleted': isCompleted,
+        };
+      }
+    }
+
+- Task 3: Documentation
+    I wrote documentation in clear and comprehensive way
+
+
 ## Day 7: Task 1
 - Set Due Date Feature
   ![Screenshot (197)](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/da10e965-b00a-43e5-9130-15ddca82f48c)
