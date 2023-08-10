@@ -65,4 +65,55 @@ samples, guidance on mobile development, and a full API reference.
   ![Screenshot (199)](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/6d98a72f-ab17-49db-b399-861b293e06dd)
   
 - Error Handling and Either Type:
+
+       class TaskRepositoryImpl implements TaskRepository {
+            @override
+            Future<Either<Failure, List<Task>>> getTasks() async {
+              try {
+                // TODO: Implement data retrieval logic from local storage
+                // For example, fetch tasks from a database or a file
+                List<Task> tasks = []; // Replace with actual data retrieval
+                  return Right(tasks);
+                } catch (e) {
+                  return Left(DataRetrievalFailure());
+                }
+              }
+        
+          @override
+          Future<Either<Failure, void>> addTask(Task task) async {
+            try {
+              // TODO: Implement data addition logic to local storage
+              // For example, save task to a database or a file
+              // Replace the following line with actual data addition logic
+              return Right(null);
+            } catch (e) {
+              return Left(DataModificationFailure()); // Handle data addition error
+            }
+          }
+        
+          @override
+          Future<Either<Failure, void>> updateTask(Task task) async {
+            try {
+              // TODO: Implement data update logic in local storage
+              // For example, update task in a database or a file
+              // Replace the following line with actual data update logic
+              return Right(null);
+            } catch (e) {
+              return Left(DataModificationFailure()); //
+            }
+          }
+        
+          @override
+          Future<Either<Failure, void>> completeTask(String taskId) async {
+            try {
+              // TODO: Implement task completion logic in local storage
+              // For example, mark task as completed in a database or a file
+              // Replace the following line with actual task completion logic
+              return Right(null);
+            } catch (e) {
+              return Left(DataModificationFailure());
+            }
+          }
+        }
+
   
