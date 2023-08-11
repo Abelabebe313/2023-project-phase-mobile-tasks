@@ -21,6 +21,106 @@ samples, guidance on mobile development, and a full API reference.
 
 ![test widget](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/bfa1feb3-f4af-4ffb-a846-fc97b9cf1fd6)
 
+## Day 8: Task 2
+- Implement a contract that defines the methods a repository
+      lib\feature\TO DO app\data\repositories\task_repository_impl.dart
+ 
+        class TaskRepositoryImpl implements TaskRepository {
+           @override
+           Future<Either<Failure, List<MyTask>>> getAllTasks() async {
+             try {
+               List<MyTask> tasks = []; // Replace with actual data retrieval
+         
+               return Right(tasks);
+             } catch (e) {
+               return Left(DataRetrievalFailure());
+             }
+           }
+         
+           @override
+           Future<Either<Failure, MyTask>> getOneTask(String taskId) async{
+             // TODO: implement getOneTasks
+             throw UnimplementedError();
+           }
+         
+           @override
+           Future<Either<Failure, void>> addTask(MyTask task) async {
+             try {
+               // TODO: Implement data addition logic to local storage
+         
+               return Right(null);
+             } catch (e) {
+               return Left(DataModificationFailure()); // Handle data addition error
+             }
+           }
+         
+           @override
+           Future<Either<Failure, void>> updateTask(MyTask task) async {
+             try {
+               // TODO: Implement data update logic in local storage
+               return Right(null);
+             } catch (e) {
+               return Left(DataModificationFailure()); //
+             }
+           }
+         
+           @override
+           Future<Either<Failure, void>> completeTask(String taskId) async {
+             try {
+               // TODO: Implement task completion logic in local storage
+               return Right(null);
+             } catch (e) {
+               return Left(DataModificationFailure());
+             }
+           }
+         
+         }
+  - abstract classes for repository dependencies
+
+        abstract class TaskRepository {
+           Future<Either<Failure, List<MyTask>>> getAllTasks();
+           Future<Either<Failure, MyTask>> getOneTask(String taskId);
+           Future<Either<Failure, void>> addTask(MyTask task);
+           Future<Either<Failure, void>> updateTask(MyTask task);
+           Future<Either<Failure, void>> completeTask(String taskId);
+         }
+  - Task Remote Data Source
+
+        abstract class TaskRemoteDataSource {
+           /// calls the remote source to get All Task
+           Future<TaskModel> getAllTasks();
+           /// calls the remote source to get one Task
+           Future<TaskModel> getOneTask(String taskId);
+         
+           /// Add new Task
+           Future<void> addTask(MyTask task);
+         
+           ///update Existing Task
+           Future<void> updateTask(MyTask task);
+         
+           /// After completeTask is pressed it will change the color of that task
+           Future<void> completeTask(String taskId);
+         }
+    - Task Remote Remote Source
+
+           abstract class TaskLocalDataSource {
+              Future<TaskModel> getAllTasks();
+              /// calls the remote source to get one Task
+              Future<TaskModel> getOneTask(String taskId);
+            
+              /// Add new Task
+              Future<void> addTask(MyTask task);
+            
+              ///update Existing Task
+              Future<void> updateTask(MyTask task);
+            
+              /// After completeTask is pressed it will change the color of that task
+              Future<void> completeTask(String taskId);
+            
+              Future<void> cacheTask(TaskModel taskTOchache);
+            
+            }
+
 ## Day 8: Task 1
 - Task 1: Project Setup
 
