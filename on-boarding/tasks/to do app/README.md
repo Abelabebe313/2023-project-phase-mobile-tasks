@@ -18,9 +18,88 @@ samples, guidance on mobile development, and a full API reference.
 ![Taskdetail](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/91ab941b-39cf-4f3b-83df-379ce925b829)
 ![Screenshot (191)](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/8abb4a7d-5c0e-4c16-b7da-e90763eee8f8)
 ![create task](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/cf7b4e19-e6c6-4110-802b-fae37069cc98)
-
 ![test widget](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/bfa1feb3-f4af-4ffb-a846-fc97b9cf1fd6)
 
+## Day 9: Task
+- Building a Todo App with Repository implementation
+     lib\feature\TO DO app\data\repositories\task_repository_impl.dart
+
+        class TaskRepositoryImpl implements TaskRepository {
+          final SharedPreferences sharedPreferences;
+
+          TaskRepositoryImpl({required this.sharedPreferences});
+
+          @override
+          Future<Either<Failure, List<MyTask>>> getAllTasks() async {
+            try {
+              final jsonString = sharedPreferences.getString('tasks');
+              if (jsonString != null) {
+                final jsonList = json.decode(jsonString) as List<dynamic>;
+                final tasks = jsonList.map((jsonMap) => MyTask.fromJson(jsonMap)).toList();
+                return Right(tasks);
+              }
+              return Right([]);
+            } catch (e) {
+              return Left(DataRetrievalFailure());
+            }
+          }
+
+          @override
+          Future<Either<Failure, MyTask>> getOneTask(String taskId) async{
+            try {
+              // TODO: Implement data retrieval logic using SharedPreferences
+              final jsonString = sharedPreferences.getString(taskId);
+              if (jsonString != null) {
+                final jsonMap = json.decode(jsonString);
+                final task = MyTask.fromJson(jsonMap);
+                return Right(task);
+              }
+              return Left(DataRetrievalFailure());
+            } catch (e) {
+              return Left(DataRetrievalFailure());
+            }
+          }
+
+          @override
+          Future<Either<Failure, void>> addTask(MyTask task) async {
+            try {
+              // TODO: Implement data addition logic to local storage using SharedPreferences
+              await sharedPreferences.setString(task.id, json.encode(task.toJson()));
+              return Right(null);
+            } catch (e) {
+              return Left(DataModificationFailure()); // Handle data addition error
+            }
+          }
+
+          @override
+          Future<Either<Failure, void>> updateTask(MyTask task) async {
+            try {
+              // TODO: Implement data update logic in local storage using SharedPreferences
+              await sharedPreferences.setString(task.id, json.encode(task.toJson()));
+              return Right(null);
+            } catch (e) {
+              return Left(DataModificationFailure()); //
+            }
+          }
+
+          @override
+          Future<Either<Failure, void>> completeTask(String taskId) async {
+            try {
+              // TODO: Implement task completion logic in local storage using SharedPreferences
+              final jsonString = sharedPreferences.getString(taskId);
+              if (jsonString != null) {
+                final jsonMap = json.decode(jsonString);
+                final task = MyTask.fromJson(jsonMap);
+                final updatedTask = task.copyWith(isCompleted: true);
+                await sharedPreferences.setString(taskId, json.encode(updatedTask.toJson()));
+                return Right(null);
+              }
+              return Left(DataModificationFailure());
+            } catch (e) {
+              return Left(DataModificationFailure());
+            }
+          }
+        }
 ## Day 8: Task 2
 - Implement a contract that defines the methods a repository
       lib\feature\TO DO app\data\repositories\task_repository_impl.dart
