@@ -78,12 +78,13 @@ class _HomeState extends State<Home> {
               itemBuilder: (context, index) {
                 final task = tasks[index];
                 return Card(
-                  color: task['isCompleted'] ? Colors.green : Colors.grey.shade100,
+                  color: task['isCompleted'] ? Colors.green.shade400 : Colors.grey.shade100,
                   child: ListTile(
                     onTap: (){
                       _onTaskTapped(task, index);
                     },
-                    leading: Icon(Icons.task, color: Colors.blue),
+                    leading: Icon(task['isCompleted'] ?Icons.task_alt : Icons.task,
+                        color: task['isCompleted']? Colors.white : HexColor('#EE6F57')),
                     title: Text(task['taskName'] ?? ''),
                     subtitle: Text(task['dueDate'] ?? ''),
                     // trailing: Text(task['dueDate'] ?? '', style: TextStyle(color: Colors.white)),

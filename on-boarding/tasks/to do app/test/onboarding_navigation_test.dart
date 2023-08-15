@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:to_do_app/main.dart';
-import 'package:to_do_app/screen/starter.dart';
-import 'package:to_do_app/screen/home.dart';
+import 'package:to_do_app/features/TODO%20app/presentation/widgets/starter.dart';
+import 'package:to_do_app/features/TODO%20app/presentation/widgets/home.dart';
 
 void main() {
   testWidgets('Test Onboarding Page Navigation', (WidgetTester tester) async {

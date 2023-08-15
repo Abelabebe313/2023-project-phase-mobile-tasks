@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:to_do_app/screen/createTask.dart';
-import 'package:to_do_app/screen/home.dart';
+import 'package:to_do_app/features/TODO%20app/presentation/widgets/createTask.dart';
+import 'package:to_do_app/features/TODO%20app/presentation/widgets/home.dart';
 
 void main() {
   testWidgets('Test task creation with valid input', (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(
       home: CreateTask(
-        addTask: (Map<String, String> newTask) {
+        addTask: (Map<String, dynamic> newTask) {
           // Test if the task is added correctly with valid input
           expect(newTask['taskName'], isNotNull);
           expect(newTask['dueDate'], isNotNull);
@@ -34,7 +34,7 @@ void main() {
   testWidgets('Test task creation with empty task name', (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(
       home: CreateTask(
-        addTask: (Map<String, String> newTask) {
+        addTask: (Map<String, dynamic> newTask) {
           // This should not be called as the task name is empty
           fail('Should not be called');
         },

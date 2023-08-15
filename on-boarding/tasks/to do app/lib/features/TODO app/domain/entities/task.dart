@@ -30,7 +30,44 @@ class MyTask extends Equatable {
     );
   }
 
+  factory MyTask.fromJson(Map<String, dynamic> json) {
+    return MyTask(
+      id: json['id'],
+      name: json['name'],
+      dueDate: DateTime.parse(json['dueDate']),
+      description: json['description'],
+      isCompleted: json['isCompleted'] ?? false,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'dueDate': dueDate.toIso8601String(),
+      'description': description,
+      'isCompleted': isCompleted,
+    };
+  }
+
+  MyTask copyWith({
+    String? id,
+    String? name,
+    DateTime? dueDate,
+    String? description,
+    bool? isCompleted,
+  }) {
+    return MyTask(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      dueDate: dueDate ?? this.dueDate,
+      description: description ?? this.description,
+      isCompleted: isCompleted ?? this.isCompleted,
+    );
+  }
+
   @override
   List<Object?> get props =>
       [id, name, dueDate, description, isCompleted];
+
 }

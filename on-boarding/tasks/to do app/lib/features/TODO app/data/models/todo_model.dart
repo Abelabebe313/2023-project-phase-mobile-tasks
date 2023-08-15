@@ -34,4 +34,19 @@ class TaskModel extends MyTask {
       'isCompleted': isCompleted,
     };
   }
+  TaskModel copyWith({
+    String? id,
+    String? name,
+    DateTime? dueDate,
+    String? description,
+    bool? isCompleted,
+  }) {
+    return TaskModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      dueDate: dueDate ?? this.dueDate,
+      description: description ?? this.description,
+      isCompleted: isCompleted ?? this.isCompleted,
+    );
+  }
 }
