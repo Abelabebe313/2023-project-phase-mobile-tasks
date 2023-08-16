@@ -19,8 +19,24 @@ samples, guidance on mobile development, and a full API reference.
 ![Screenshot (191)](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/8abb4a7d-5c0e-4c16-b7da-e90763eee8f8)
 ![create task](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/cf7b4e19-e6c6-4110-802b-fae37069cc98)
 ![test widget](https://github.com/Abelabebe313/2023-project-phase-mobile-tasks/assets/88794322/bfa1feb3-f4af-4ffb-a846-fc97b9cf1fd6)
+## Day 9: Task 2
+- Network info
+      lib\core\network\network_info.dart
 
-## Day 9: Task
+          import 'package:internet_connection_checker/internet_connection_checker.dart';
+          abstract class NetworkInfo {
+            Future<bool> get isConnected;
+          }
+
+          class NetworkInfoImpl implements NetworkInfo {
+            final InternetConnectionChecker connectionChecker;
+
+            NetworkInfoImpl(this.connectionChecker);
+
+            @override
+            Future<bool> get isConnected => connectionChecker.hasConnection;
+          }
+## Day 9: Task 1
 - Building a Todo App with Repository implementation
      lib\feature\TO DO app\data\repositories\task_repository_impl.dart
 
